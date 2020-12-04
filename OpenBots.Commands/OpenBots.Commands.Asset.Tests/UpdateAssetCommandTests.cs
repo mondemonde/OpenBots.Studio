@@ -29,7 +29,6 @@ namespace OpenBots.Commands.Asset.Tests
             assetName.StoreInUserVariable(_engine, "{assetName}");
             newAsset.StoreInUserVariable(_engine, "{newAsset}");
 
-
             _updateAsset.v_AssetName = "{assetName}";
             _updateAsset.v_AssetType = "Text";
             _updateAsset.v_AssetFilePath = "";
@@ -61,7 +60,6 @@ namespace OpenBots.Commands.Asset.Tests
             assetName.StoreInUserVariable(_engine, "{assetName}");
             newAsset.StoreInUserVariable(_engine, "{newAsset}");
 
-
             _updateAsset.v_AssetName = "{assetName}";
             _updateAsset.v_AssetType = "Number";
             _updateAsset.v_AssetFilePath = "";
@@ -92,7 +90,6 @@ namespace OpenBots.Commands.Asset.Tests
             string newAsset = "{ \"text\": \"newText\" }";
             assetName.StoreInUserVariable(_engine, "{assetName}");
             newAsset.StoreInUserVariable(_engine, "{newAsset}");
-
 
             _updateAsset.v_AssetName = "{assetName}";
             _updateAsset.v_AssetType = "JSON";
@@ -127,7 +124,6 @@ namespace OpenBots.Commands.Asset.Tests
             assetName.StoreInUserVariable(_engine, "{assetName}");
             newAsset.StoreInUserVariable(_engine, "{newAsset}");
 
-
             _updateAsset.v_AssetName = "{assetName}";
             _updateAsset.v_AssetType = "File";
             _updateAsset.v_AssetFilePath = newAsset;
@@ -158,7 +154,6 @@ namespace OpenBots.Commands.Asset.Tests
             string newAsset = "newText";
             assetName.StoreInUserVariable(_engine, "{assetName}");
             newAsset.StoreInUserVariable(_engine, "{newAsset}");
-
 
             _updateAsset.v_AssetName = "{assetName}";
             _updateAsset.v_AssetType = "Text";

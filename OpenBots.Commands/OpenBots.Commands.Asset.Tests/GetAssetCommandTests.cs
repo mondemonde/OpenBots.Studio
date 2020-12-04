@@ -57,7 +57,6 @@ namespace OpenBots.Commands.Asset.Tests
             Assert.Equal("42", asset);
         }
 
-        // We currently expect this test to fail due to Bug 3146
         [Fact]
         public void GetsJSONAsset()
         {
@@ -72,7 +71,6 @@ namespace OpenBots.Commands.Asset.Tests
             _getAsset.RunCommand(_engine);
 
             string jsonString = "{output}".ConvertUserVariableToString(_engine);
-            output.WriteLine(jsonString);
             JObject jsonObject = JObject.Parse(jsonString);
             Assert.Equal("testText", jsonObject["text"]);
         }

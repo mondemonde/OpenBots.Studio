@@ -7,6 +7,7 @@ using System.IO;
 using Xunit;
 using OpenBots.Engine;
 using OpenBots.Core.Utilities.CommonUtilities;
+using Newtonsoft.Json.Linq;
 
 namespace OpenBots.Commands.Asset.Tests
 {
@@ -81,6 +82,38 @@ namespace OpenBots.Commands.Asset.Tests
         }
 
         [Fact]
+        public void UpdatesJSONAsset()
+        {
+            _engine = new AutomationEngineInstance(null);
+            _updateAsset = new UpdateAssetCommand();
+            _getAsset = new GetAssetCommand();
+
+            string assetName = "testJSONAsset";
+            string newAsset = "{ \"text\": \"newText\" }";
+            assetName.StoreInUserVariable(_engine, "{assetName}");
+            newAsset.StoreInUserVariable(_engine, "{newAsset}");
+
+
+            _updateAsset.v_AssetName = "{assetName}";
+            _updateAsset.v_AssetType = "JSON";
+            _updateAsset.v_AssetFilePath = "";
+            _updateAsset.v_AssetValue = "{newAsset}";
+
+            _updateAsset.RunCommand(_engine);
+
+            _getAsset.v_AssetName = "{assetName}";
+            _getAsset.v_AssetType = "JSON";
+            _getAsset.v_OutputUserVariableName = "{output}";
+
+            _getAsset.RunCommand(_engine);
+
+            JObject outputAsset = JObject.Parse("{output}".ConvertUserVariableToString(_engine));
+            Assert.Equal("newText", outputAsset["text"]);
+
+            resetAsset(assetName, "{ \"text\": \"testText\" }", "JSON");
+        }
+
+        [Fact]
         public void UpdatesFileAsset()
         {
             _engine = new AutomationEngineInstance(null);
@@ -112,6 +145,27 @@ namespace OpenBots.Commands.Asset.Tests
 
             File.Delete(filepath+@"Download\newtest.txt");
             resetAsset(assetName, filepath + @"Upload\oldtest.txt", "File");
+        }
+
+        [Fact]
+        public void HandlesNonexistentAsset()
+        {
+            _engine = new AutomationEngineInstance(null);
+            _updateAsset = new UpdateAssetCommand();
+            _getAsset = new GetAssetCommand();
+
+            string assetName = "noAsset";
+            string newAsset = "newText";
+            assetName.StoreInUserVariable(_engine, "{assetName}");
+            newAsset.StoreInUserVariable(_engine, "{newAsset}");
+
+
+            _updateAsset.v_AssetName = "{assetName}";
+            _updateAsset.v_AssetType = "Text";
+            _updateAsset.v_AssetFilePath = "";
+            _updateAsset.v_AssetValue = "{newAsset}";
+
+            Assert.Throws<Exception>(() => _updateAsset.RunCommand(_engine));
         }
 
         private void resetAsset(string assetName, string assetVal, string type)

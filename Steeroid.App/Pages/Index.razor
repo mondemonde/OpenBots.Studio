@@ -1,0 +1,156 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime
+
+@*<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />*@
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-cntent-center align-items-center">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Steeroid</span></h2>
+                <p class="animate__animated animate__fadeInUp">
+                    Quickly build automation tasks without needing to write code.Screen Recording lets Steeroid watch the actions you perform on screen and turns it into a script.
+                </p>
+                <a href="https://steeroid.azurewebsites.net/" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">Web Automation</h2>
+                <p class="animate__animated animate__fadeInUp">
+                    Extend your Steeroid to automate the web. Use the Katalon web Recorder extension to record your web experience or scrape data.
+
+                </p>
+                <a href="https://steeroid.azurewebsites.net/" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">Custom Plugins</h2>
+                <p class="animate__animated animate__fadeInUp">
+                    If you think that you need more tools and features, you can look for the extension or plugin available on the web.
+                </p>
+                <a href="https://steeroid.azurewebsites.net/" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Features Section ======= -->
+    <section class="features">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>About</h2>
+                <p>Steeroid is based on the open source project Taskt and and a forked copy of OpenBots. You can quickly build automation tasks without needing to write code. taskt works with both Traditional and Web Applications and includes support for advanced features, 
+                such as executing custom code, OCR, and image recognition. In order to call remotely your Steeroid copy you need to register on Steeroid Hub. </p>
+            </div>
+
+            @*<div class="row" data-aos="fade-up">
+                <div class="col-md-5">
+                    <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-4">
+                    <h3>Desktop recorder</h3>
+                    <p class="font-italic">
+                        Quickly build automation tasks without needing to write code.Screen Recording lets Steeroid watch the actions you perform on screen and turns it into a script.
+                    </p>
+                    <ul>
+                        <li><i class="icofont-check"></i>Records action in Desktop</li>
+                        <li><i class="icofont-check"></i>Customize the generated script</li>
+                        <li><i class="icofont-check"></i>Replay the action</li>
+
+                    </ul>
+                </div>
+            </div>*@
+
+            @*<div class="row" data-aos="fade-up">
+                <div class="col-md-5 order-1 order-md-2">
+                    <img src="assets/img/features-2.svg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-5 order-2 order-md-1">
+                    <h3>Web Automation</h3>
+                    <p class="font-italic">
+                        Extend your Steeroid to automate the web. Use the Katalon web Recorder extension to record your web experience or scrape data.
+                    </p>
+                    <p>
+                        Katalon Recorder is a Selenium IDE alternative to record and export Selenium scripts. With reports & screenshots. Fast & open-source.
+                        Katalon Automation Recorder is the best automation recorder that helps you export Selenium WebDriver code. You can also record actions, capture web elements on web applications, play automated test cases, and do reporting quickly and easily. Katalon Recorder supports the legacy Selenium IDE's commands and extension scripts (AKA user-extensions.js) for developing custom locator builders and actions.
+
+                        ** Katalon Recorder is a completely free product developed by Katalon TestOps team (https://analytics.katalon.com).
+
+                        Katalon Recorder will make your test automation work a lot easier.
+                        <ul>
+                            <li><i class="icofont-check"></i> Record, play, debug with speed control, pause/resume, breakpoints capabilities.</li>
+                            <li><i class="icofont-check"></i>Enjoy fastest execution speed compared to other extensions with Selenium 3 core engine.</li>
+                            <li><i class="icofont-check"></i>Make use of multiple locator types including XPath & CSS.</li>
+                            
+                        </ul>
+                       
+                    
+
+                    </p>
+                </div>
+            </div>*@
+
+            @*<div class="row" data-aos="fade-up">
+                <div class="col-md-5">
+                    <img src="assets/img/features-3.svg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-5">
+                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
+                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
+                    <ul>
+                        <li><i class="icofont-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                        <li><i class="icofont-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                        <li><i class="icofont-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>
+                    </ul>
+                </div>
+            </div>*@
+
+
+        </div>
+    </section><!-- End Features Section -->
+
+</main><!-- End #main -->
+@code {
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await JSRuntime.InvokeAsync<object>("ExecuteMain");
+    //}
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeAsync<object>("ExecuteMain");
+
+        }
+    }
+}

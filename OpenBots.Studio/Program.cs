@@ -19,6 +19,8 @@ using OpenBots.UI.Forms;
 using OpenBots.UI.Forms.ScriptBuilder_Forms;
 using OpenBots.UI.Forms.Supplement_Forms;
 using Serilog.Core;
+using Steeroid.Infra2._0.Helpers;
+using Steeroid.Models.Helpers;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -47,6 +49,9 @@ namespace OpenBots
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
+            var logger = new SLogger();
+            Agent.SetLogger(logger);
+
             //if the exe was passed a filename argument then run the script
             if (args.Length > 0)
             {
@@ -69,7 +74,7 @@ namespace OpenBots
                 //initialize Logger
                 string engineLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Engine Logs.txt");
                 Logger engineLogger = new Logging().CreateFileLogger(engineLoggerFilePath, Serilog.RollingInterval.Day);
-                Application.Run(new frmScriptEngine(filePath, "", null, engineLogger));
+                Application.Run(new frmScriptEngine(filePath, "", null, engineLogger,null,null,null,true));
             }
             else
             {

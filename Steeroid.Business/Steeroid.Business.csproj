@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyVersion>1.3.0.0</AssemblyVersion>
+    <FileVersion>1.3.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Orders\**" />
+    <Compile Remove="BaseInterfaces\**" />
+    <Compile Remove="Machine\**" />
+    <Compile Remove="Orders\**" />
+    <EmbeddedResource Remove="Areas\Orders\**" />
+    <EmbeddedResource Remove="BaseInterfaces\**" />
+    <EmbeddedResource Remove="Machine\**" />
+    <EmbeddedResource Remove="Orders\**" />
+    <None Remove="Areas\Orders\**" />
+    <None Remove="BaseInterfaces\**" />
+    <None Remove="Machine\**" />
+    <None Remove="Orders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Communication\BizQueueClient.cs" />
+    <Compile Remove="Areas\Communication\IDevNoteServiceBusMessageHandler.cs" />
+    <Compile Remove="Areas\Input\DevNoteIntegrationEventHandler.cs" />
+    <Compile Remove="Areas\License\LicenseManager.cs" />
+    <Compile Remove="Helpers\Agent.cs" />
+    <Compile Remove="Helpers\INote.cs" />
+    <Compile Remove="Helpers\TaskTimer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Input\Queries\" />
+    <Folder Include="Areas\License\Queries\" />
+    <Folder Include="Areas\Machine\Commands\" />
+    <Folder Include="Areas\Scripting\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Steeroid.Models\Steeroid.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

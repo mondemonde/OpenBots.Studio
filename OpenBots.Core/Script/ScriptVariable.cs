@@ -3,7 +3,7 @@
 namespace OpenBots.Core.Script
 {
     [Serializable]
-    public class ScriptVariable
+    public class ScriptVariable : IScriptVariable
     {
         /// <summary>
         /// name that will be used to identify the variable

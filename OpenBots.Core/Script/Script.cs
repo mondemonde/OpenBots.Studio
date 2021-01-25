@@ -16,6 +16,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenBots.Core.Command;
+using Steeroid.Models.Interfaces.Scripting;
+using Steeroid.Models.Scripting;
 using System;
 using System .Collections.Generic;
 using System.IO;
@@ -28,7 +30,7 @@ using Formatting = Newtonsoft.Json.Formatting;
 
 namespace OpenBots.Core.Script
 {
-    public class Script
+    public class Script:IScript
     {
         /// <summary>
         /// Contains user-defined variables
@@ -43,6 +45,11 @@ namespace OpenBots.Core.Script
         /// </summary>
         public List<ScriptAction> Commands;
         public string Version { get; set; }
+
+       public List<IScriptVariable> MyVariables { 
+            get => Variables.ConvertAll(o=>(IScriptVariable)o);
+            set => Variables = value.ConvertAll(o=>((ScriptVariable)o));// throw new NotImplementedException(); 
+        }
 
         public Script()
         {
@@ -60,6 +67,8 @@ namespace OpenBots.Core.Script
             Commands.Add(newExecutionCommand);
             return newExecutionCommand;
         }
+
+
 
         /// <summary>
         /// Converts and serializes the user-defined commands into an JSON file
@@ -190,12 +199,17 @@ namespace OpenBots.Core.Script
             //if deserialized Script version is lower than than the current application version
             if (deserializedScriptVersion.CompareTo(new Version(Application.ProductVersion)) < 0)
             {
-                var dialogResult = MessageBox.Show($"Attempting to open a Script file from OpenBots Studio {deserializedScriptVersion}. " +
-                                                   $"Would you like to attempt to convert this Script to {Application.ProductVersion}?", 
-                                                   "Convert Script", MessageBoxButtons.YesNo);
+                #region SKIP
 
-                if (dialogResult == DialogResult.Yes || isDialogResultYes)
-                    deserializedData = ConvertToLatestVersion(filePath, deserializedScriptVersion.ToString());
+                //?var dialogResult = MessageBox.Show($"Attempting to open a Script file from OpenBots Studio {deserializedScriptVersion}. " +
+                //                                   $"Would you like to attempt to convert this Script to {Application.ProductVersion}?", 
+                //                                   "Convert Script", MessageBoxButtons.YesNo);
+
+
+                //if (dialogResult == DialogResult.Yes || isDialogResultYes)
+                //    deserializedData = ConvertToLatestVersion(filePath, deserializedScriptVersion.ToString());
+
+                #endregion
             }
 
             //update ProjectPath variable
@@ -253,6 +267,11 @@ namespace OpenBots.Core.Script
                                
             File.WriteAllText(filePath, scriptText);
             return DeserializeFile(filePath, true);
-        }        
+        }
+
+        public IScriptAction MyAddNewParentCommand(IScriptCommand scriptCommand)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

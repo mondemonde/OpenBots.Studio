@@ -1,0 +1,251 @@
+﻿@page "/register"
+
+
+@using Steeroid.Business.License
+@using  Steeroid.Models.Helpers
+
+@inject MachineService MacService
+@inject NavigationManager uriHelper;
+
+
+
+@if (mac == null)
+
+{
+    <h1>Register Machine</h1>
+
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div class="container body-content">
+
+
+
+        <link href="/LIB/json-viewer/src/json-viewer.css" rel="stylesheet">
+
+        <br>
+
+
+
+        <h2>Registration Details</h2>
+
+
+
+        <div>
+
+            <hr>
+
+
+
+            <dl class="row">
+                <dt class="col-sm-3">
+                    GlobalMacId
+                </dt>
+
+                <dd class="col-sm-9">
+                    @mac.GlobalMacId
+                </dd>
+
+
+                <dt class="col-sm-3">
+                    ClientId
+                </dt>
+
+                <dd class="col-sm-9">
+                    @mac.ClientId
+                </dd>
+
+                <dt class="col-sm-3">
+                    TopicId
+                </dt>
+
+                <dd class="col-sm-9">
+                    @mac.TopicId
+                </dd>
+
+                <dt class="col-sm-3">
+                    Servicebus ConnectionString
+                </dt>
+
+                <dd class="col-sm-9">
+                    @mac.ServiceBusConnectionString
+                </dd>
+
+
+                <dt class="col-sm-3">
+                    BusSubscription
+                </dt>
+
+                <dd class="col-sm-9">
+                    @mac.BusSubscription
+                </dd>
+
+
+                <dt class="col-sm-3">
+                    PrivateKey
+                </dt>
+
+                <dd class="col-sm-9">
+                    @mac.PrivateKey
+                </dd>
+
+                @if (mac.IsDisabled)
+                {
+                    <dt class="col-sm-3">
+                        IsDisabled
+                    </dt>
+
+                    <dd class="col-sm-9">
+                        <input checked="checked" class="check-box" disabled="disabled" type="checkbox">
+                    </dd>
+                }
+
+                <dt class="col-sm-3">
+                    ExpirationDate
+                </dt>
+
+                <dd class="col-sm-9">
+                    @if (mac.ExpirationDate.HasValue)
+                    {
+                        mac.ExpirationDate.Value.ToShortDateString();
+                    }
+                </dd>
+
+                <dt class="col-sm-3">
+                    Created
+                </dt>
+
+                <dd class="col-sm-9">
+
+                    @mac.Created.ToShortDateString()
+
+                </dd>
+
+                <dt class="col-sm-3">
+                    Modified
+                </dt>
+
+                <dd class="col-sm-9">
+                    @if (mac.Modified.HasValue)
+                    {
+                        mac.Modified.Value.ToShortDateString();
+                    }
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+
+
+        </p>
+
+
+        <hr>
+
+
+        <div id="MainContent_UpdatePanel2">
+
+
+            @*<input name="__RequestVerificationToken" type="hidden" value="rNMAdviLG3Wzc5SkMGGURBzxoLNDLzg0eCfpIcFRMQBmjZ__R2acksQELJQ12PYE0Dr5ZX3LX4SABa74JjAfiJXiaXRrakK7biPhx-AzYGs1">;*@
+
+
+            <div class="input-group col-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter API/License Token</span>
+                </div>
+                <textarea name="EnteredToken" rows="2" cols="20" id="MainContent_txtEnteredToken"
+                          class="form-control col-12" @bind="enteredToken" @bind:event="oninput"></textarea>
+            </div>
+
+            <div class="container co-12">
+
+                <table style="width: 100%">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: right">
+                                <div class="mt-2 float-right ">
+                                    <input type="submit" name="ctl00$MainContent$btnDecode" value="Update License" id="btnDecode" @onclick="submit_clicked" class="btn btn-primary mb-2">
+
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="text-muted">Remarks:</div>
+                                <div class="alert alert-primary" role="alert">
+
+                                    <input type="hidden" name="ctl00$MainContent$hdjsonResultToken" id="MainContent_hdjsonResultToken">
+
+
+                                    <div id="json">@mac.LicenseRemarks</div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <hr>
+
+        <footer>
+            <p>© 2020 - Steeroid Website</p>
+        </footer>
+
+        <input type="hidden" name="ctl00$hdSiteMasterToastr" id="hdSiteMasterToastr">
+        <input type="hidden" name="ctl00$hdToastrMode" id="hdToastrMode">
+    </div>
+
+}
+
+
+
+@code {
+
+    private LicensedMachine mac;
+
+    //private string resultMessage;
+    private string enteredToken { get; set; } = string.Empty;
+
+    private string licMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            mac = await MacService.GetMachine();// GetForecastAsync(DateTime.Now);
+
+        }
+        catch (Exception)
+        {
+            mac = new LicensedMachine();
+        }
+
+        //resultMessage = mac.LicenseRemarks;
+
+    }
+
+    private void submit_clicked()
+    {
+        var result = AsyncHelper.RunSync<bool>(async () =>
+        {
+
+            mac = await MacService.Register(enteredToken);
+            return true;
+        });
+        uriHelper.NavigateTo("/register", true);
+
+
+        //mac = await MacService.GetMachine();// GetForecastAsync(DateTime.Now);
+
+    }
+}

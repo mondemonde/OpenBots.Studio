@@ -1,0 +1,9 @@
+﻿using System;
+
+namespace Steeroid.Models
+{
+    public abstract class BaseDomainEvent
+    {
+        public DateTime DateOccurred { get; protected set; } = DateTime.UtcNow;
+    }
+}

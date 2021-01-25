@@ -1,0 +1,41 @@
+{
+  "Body": "eyJHdWlkIjoicmVmMTIzIiwiRXZlbnROYW1lIjoidGVzdHZhciIsIkV2ZW50UGFyYW1ldGVycyI6e30sIkNyZWF0aW9uRGF0ZSI6IjIwMjEtMDEtMDdUMTc6MTA6MDEuNjc1ODc3NVoifQ==",
+  "MessageId": "8509972b-b18e-4499-bd0c-489ec29d6bbe",
+  "PartitionKey": null,
+  "ViaPartitionKey": null,
+  "SessionId": null,
+  "ReplyToSessionId": null,
+  "ExpiresAtUtc": "2021-01-21T17:10:06.838Z",
+  "TimeToLive": "14.00:00:00",
+  "CorrelationId": null,
+  "Label": "testvar",
+  "To": null,
+  "ContentType": null,
+  "ReplyTo": null,
+  "ScheduledEnqueueTimeUtc": "0001-01-01T00:00:00",
+  "Size": 106,
+  "UserProperties": {
+    "DomainName": "Machine3",
+    "GlobalMachineId": "3",
+    "Mode": "DEVFRONT_RUN",
+    "ReferenceId": "ref123",
+    "fx_setting_SendUrl": "https://devnotefx.azurewebsites.net/api/AutoPlayQueue",
+    "fx_setting_Code": "DCaQiiULY5CWHQW2We2MOUkaaiBc/Zg7btpz1kqc9qADdNhKXR4OBg==",
+    //"SvcBusConnString": "Endpoint=sb://devnote.servicebus.windows.net/;SharedAccessKeyName=mac3Client;SharedAccessKey=Byg7cxUw4KwmmimkUZds1bD7XtPLBvIx3MtAYsWFl3c=",
+    "SvcBusConnString": "Endpoint=sb://devnote.servicebus.windows.net/;SharedAccessKeyName=mac3Client;SharedAccessKey=Byg7cxUw4KwmmimkUZds1bD7XtPLBvIx3MtAYsWFl3c=",
+   
+    "Topic": "Machine3",
+    "Diagnostic-Id": "00-c072b2614297294eac618d5a5ff9bb1d-a7de57839c3ce044-00"
+  },
+  "SystemProperties": {
+    "IsLockTokenSet": false,
+    "LockToken": "713cea06-f797-42c4-b31c-830b8df66a70",
+    "IsReceived": true,
+    "DeliveryCount": 6,
+    "LockedUntilUtc": "2021-01-07T17:13:55.841Z",
+    "SequenceNumber": 1351,
+    "DeadLetterSource": null,
+    "EnqueuedSequenceNumber": 0,
+    "EnqueuedTimeUtc": "2021-01-07T17:10:06.838Z"
+  }
+}
